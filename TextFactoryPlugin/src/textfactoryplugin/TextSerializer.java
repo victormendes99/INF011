@@ -13,9 +13,6 @@ import interfaces.IDocumentSerializer;
  */
 public class TextSerializer implements IDocumentSerializer {
 
-    private TextSerializer(){
-        
-    }
     
     @Override
     public void loadDocument() {

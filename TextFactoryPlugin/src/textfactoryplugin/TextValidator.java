@@ -13,9 +13,6 @@ import interfaces.IDocumentValidator;
  */
 public class TextValidator implements IDocumentValidator {
     
-    private TextValidator(){
-        
-    }
     
     @Override
     public void validateDocument() {

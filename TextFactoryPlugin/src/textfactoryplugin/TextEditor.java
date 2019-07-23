@@ -13,10 +13,6 @@ import interfaces.IDocumentEditor;
  */
 public class TextEditor implements IDocumentEditor {
 
-    private TextEditor(){
-        
-    }
-    
     @Override
     public void openDocument() {
         System.out.println("Visualizando Documento");
