@@ -16,6 +16,9 @@ import interfaces.IDocumentValidator;
  * @author Victor
  */
 public class TextFactoryPlugin implements IPlugin , IDocumentFactory{
+    
+    private TextFactoryPlugin(){}
+    
     @Override
     public boolean initialize(ICore core){
         return true;
@@ -23,18 +26,18 @@ public class TextFactoryPlugin implements IPlugin , IDocumentFactory{
 
     @Override
     public IDocumentEditor createDocumentEditor() {
-        return TextEditor.getInstance();
+        return new TextEditor();
      }
     
     
     @Override
     public IDocumentValidator createDocumentValidator() {
-        return TextValidator.getInstance();
+        return new TextValidator();
     }
 
     @Override
     public IDocumentSerializer createDocumentSerializer() {
-        return TextSerializer.getInstance();
+        return new TextSerializer();
     }
 
     @Override
@@ -49,5 +52,12 @@ public class TextFactoryPlugin implements IPlugin , IDocumentFactory{
         createDocumentSerializer().loadDocument();
     }
     
+    public static TextFactoryPlugin getInstance(){
+        
+        if(textFactoryPlugin == null)
+            textFactoryPlugin = new TextFactoryPlugin();
+        return textFactoryPlugin;
+    }
     
+    private static TextFactoryPlugin textFactoryPlugin = null;
 }

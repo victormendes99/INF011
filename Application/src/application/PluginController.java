@@ -9,10 +9,16 @@ import interfaces.ICore;
 import interfaces.IDocumentFactory;
 import interfaces.IPlugin;
 import interfaces.IPluginController;
+
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
+
+import java.lang.reflect.Method;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -43,7 +49,12 @@ public class PluginController implements IPluginController {
             try {            
                 plugin = (IPlugin) Class.forName(pluginName.toLowerCase() + "." + pluginName, true, ulc).newInstance();
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-                Logger.getLogger(PluginController.class.getName()).log(Level.SEVERE, null, ex);
+                try{
+                    Method getInstance = Class.forName(pluginName.toLowerCase() + "." + pluginName, true, ulc).getMethod("getInstance");
+                    plugin = (IPlugin) getInstance.invoke(pluginName.toLowerCase() + "." + pluginName);
+                }catch (NoSuchMethodException | ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+                    Logger.getLogger(PluginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             }
             if (plugin != null)
                 if (plugin.initialize(core))

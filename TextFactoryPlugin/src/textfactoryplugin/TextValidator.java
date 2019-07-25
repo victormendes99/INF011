@@ -18,12 +18,6 @@ public class TextValidator implements IDocumentValidator {
     public void validateDocument() {
         System.out.println("Arquivo validado com sucesso!");
     }
-    
-    public static TextValidator getInstance(){
-        if(textValidator == null)
-            textValidator = new TextValidator();
-        return textValidator;
-    }
    
     
     private static TextValidator textValidator;

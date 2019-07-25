@@ -19,13 +19,6 @@ public class TextEditor implements IDocumentEditor {
     }
     
     
-    public static TextEditor getInstance(){
-        if(textEditor == null)
-            textEditor = new TextEditor();
-        
-        return textEditor;
-    }
-    
     private static TextEditor textEditor;
     
 }

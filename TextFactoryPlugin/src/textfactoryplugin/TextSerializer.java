@@ -24,12 +24,6 @@ public class TextSerializer implements IDocumentSerializer {
         System.out.println("Arquivo salvo com sucesso!");
     }
     
-    public static TextSerializer getInstance(){
-        if(textSerializer == null)
-            textSerializer = new TextSerializer();
-        
-        return textSerializer;
-    }
     
     private static TextSerializer textSerializer;
     
